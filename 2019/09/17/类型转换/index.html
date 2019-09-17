@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/r85.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="description" content>
+  <meta name="author" content="Roland Edgeworth">
+  <meta name="keywords" content>
+  <title>类型转换 ~ Rol.E</title>
+  <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css">
+  <link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css">
+  <link rel="stylesheet" href="https://at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+  
+    <link rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css">
+  
+  <link rel="stylesheet" href="/css/main.css">
+
+  
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Rol.E</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">Archives</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">Tags</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">About</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+</nav>
+
+    <div class="view intro-2"
+         style="background: url('/img/bg.jpg')no-repeat center center;
+           background-size: cover;
+           background-attachment: fixed;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <br>
+              <p>Tuesday, September 17th 2019, 7:47 pm</p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto">
+          <div class="markdown-body">
+            <h1 id="隐式转换"><a href="#隐式转换" class="headerlink" title="隐式转换"></a>隐式转换</h1><p>不同类型的变量比较要先转类型, 通常发生在运算符加减乘除, 等于, 还有大于, 小于等   </p>
+<a id="more"></a>
+<h2 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h2><ul>
+<li><p>字符串加数字, 数字就会转成字符串</p>
+</li>
+<li><p>数字减字符串, 字符串转成数字, 反之亦然<br>  如果字符串不是纯数字, 就会返回 NaN<br>  乘, 除, 大于, 小于的转换也是一样</p>
+</li>
+<li><p>字符串和数字比较时，字符串转数字</p>
+</li>
+<li><p>数字为布尔比较时，布尔转数字</p>
+</li>
+<li><p>字符串和布尔比较时，两者转数字</p>
+</li>
+<li><p>undefined等于null</p>
+</li>
+</ul>
+<p>例如  </p>
+<pre><code class="js">console.log(10+&#39;20&#39;) //2010 String
+
+console.log(10-&#39;20&#39;)//-10 number
+console.log(10-&#39;one&#39;) //NaN
+console.log(10-&#39;101a&#39;) //NaN
+
+console.log(10*&#39;20&#39;) //200 number
+console.log(&#39;10&#39;*&#39;20&#39;) //200 number
+
+console.log(20/&#39;10&#39;) //2 number
+console.log(&#39;20&#39;/&#39;10&#39;) //2 number
+console.log(&#39;20&#39;/&#39;one&#39;) //NaN
+console.log(&#39;0&#39;==0) //true
+console.log(0==false) //true
+console.log(&#39;0&#39;==false) //true
+
+console.log(null==false) //false
+console.log(undefined==false) //false
+
+console.log(undefined==null) //true</code></pre>
+<h1 id="显式转换"><a href="#显式转换" class="headerlink" title="显式转换"></a>显式转换</h1><pre><code class="js">parseInt() &amp; parseFloat()
+parseInt(&quot;1234blue&quot;);   //returns 1234
+parseInt(&quot;0xA&quot;);        //returns 10
+parseInt(&quot;  22.5&quot;);     //returns 22
+parseInt(&quot;22   5&quot;);     //returns 22
+parseInt(&quot;blue&quot;);       //returns NaN
+
+parseFloat(&quot;1234blue&quot;); //returns 1234.0
+parseFloat(&quot;0xA&quot;);      //returns NaN
+parseFloat(&quot;  22.5  &quot;); //returns 22.5
+parseFloat(&quot;22.34.5&quot;);  //returns 22.34
+parseFloat(&quot;0908&quot;);     //returns 908
+parseFloat(&quot;blue&quot;);     //returns NaN</code></pre>
+<p>parse 意为 “解析”<br>parseInt() 将值转换成整数, parseFloat() 将值转换成浮点数</p>
+<p>这两个函数只能对 String 类型使用,其他类型会返回 NaN  </p>
+<pre><code class="js">parseInt(&quot;AF&quot;, 16);     //returns 175
+parseInt(&quot;10&quot;, 2);      //returns 2
+parseInt(&quot;10&quot;, 8);      //returns 8
+parseInt(&quot;10&quot;, 10);     //returns 10   </code></pre>
+<p>parsrInt() 可以进行进制转换, 将16进制, 8进制, 2进制或其他进制的字符串转换为整数, 进制由方法的第二个参数指定</p>
+<pre><code class="js">parseInt(&quot;010&quot;);        //returns 8
+parseInt(&quot;010&quot;, 8);     //returns 8
+parseInt(&quot;010&quot;, 10);    //returns 10</code></pre>
+<p>如果十进制数包含前导0, 那么最好指明第二个参数为10, 这样才不会意外地得到八进制的值</p>
+<h2 id="window-Number"><a href="#window-Number" class="headerlink" title="window.Number()"></a>window.Number()</h2><p>可以将任意类型的参数mix转换为数值类型  </p>
+<p>如果是布尔值, true和false分别被转换为1和0</p>
+<p>如果是数字值, 返回本身<br>如果是null, 返回0<br>如果是undefined, 返回NaN<br>如果是字符串, 遵循以下规则  </p>
+<ul>
+<li>如果字符串中只包含数字, 则将其转换为十进制 ( 忽略前导 0 )</li>
+<li>如果字符串中包含有效的浮点格式, 将其转换为浮点数值 ( 忽略前导 0 )</li>
+<li>如果是空字符串, 返回 0</li>
+<li>如果字符串中无以上格式, 则将其转换为NaN</li>
+<li>如果是对象, 则调用对象的valueOf()方法, 然后依据前面的规则转换返回的值。如果转换的结果是NaN, 则调用对象的toString()方法, 再次依照前面的规则转换返回的字符串值   </li>
+</ul>
+<pre><code class="js">Number(null)         //0
+Number(undefined)    //NaN
+Number(true)         //1
+Number(false)        //0
+
+Number(&quot;  123 456  &quot;)//NaN
+Number(&quot;  123456   &quot;)//123456
+Number(&quot;  123.456  &quot;)//123.456
+Number(&quot;  123.45.6 &quot;)//NaN</code></pre>
+<h2 id="toString-NaN"><a href="#toString-NaN" class="headerlink" title="toString()"></a>toString()</h2><p>除undefined和null之外的所有类型的值都具有toString()方法, 其作用是返回对象的字符串表示</p>
+<table>
+<thead>
+<tr>
+<th align="left">对象</th>
+<th align="left">操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Array</td>
+<td align="left">将 Array 的元素转换为字符串 , 结果字符串由逗号分隔, 且连接起来</td>
+</tr>
+<tr>
+<td align="left">Boolean</td>
+<td align="left">如果 Boolean 值是 true, 则返回 “true” , 否则返回 “false”</td>
+</tr>
+<tr>
+<td align="left">Date</td>
+<td align="left">返回日期的文字表示法</td>
+</tr>
+<tr>
+<td align="left">Error</td>
+<td align="left">返回一个包含相关错误信息的字符串</td>
+</tr>
+<tr>
+<td align="left">Function</td>
+<td align="left">返回如下格式的字符串 : function func() { [native code] }</td>
+</tr>
+<tr>
+<td align="left">Number</td>
+<td align="left">返回数字的文字表示</td>
+</tr>
+<tr>
+<td align="left">String</td>
+<td align="left">返回 String 对象的值</td>
+</tr>
+<tr>
+<td align="left">默认</td>
+<td align="left">返回 “ [ object obj ] ”</td>
+</tr>
+</tbody></table>
+<h2 id="String"><a href="#String" class="headerlink" title="String()"></a>String()</h2><p>将任何类型的值转换为字符串</p>
+<ul>
+<li>如果有toString()方法, 则调用该方法 ( 不传递radix参数 ) 并返回结果</li>
+<li>如果是null, 返回”null”</li>
+<li>如果是undefined, 返回”undefined”  </li>
+</ul>
+<h2 id="window-Boolean"><a href="#window-Boolean" class="headerlink" title="window.Boolean()"></a>window.Boolean()</h2><p>将任何类型的值转换为布尔值  </p>
+<p>以下值会被转换为false</p>
+<pre><code class="js">window.Boolean(false);      //false
+window.Boolean(&quot;&quot;);         //false
+window.Boolean(0);          //false
+window.Boolean(NaN);        //false
+window.Boolean(null);       //false
+window.Boolean(undefined);  //false</code></pre>
+<p>其余所有值都会返回 true</p>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            
+            <p>
+              <i class="iconfont icon-tag"></i>
+              
+                <a class="hover-with-bg" href="/tags/JS">JS</a>
+              
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" rel="nofollow noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+  </div>
+</div>
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/popper/popper.min.js"></script>
+<script src="/lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="/lib/mdbootstrap/js/mdb.min.js"></script>
+<script src="/js/main.js"></script>
+
+  
+    <script src="/lib/tocbot/tocbot.min.js"></script>
+  
+  <script src="/js/post.js"></script>
+
+
+  <script src="/lib/prettify/prettify.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+  <script src="/lib/typed/typed.min.js"></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "类型转换&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+  <script src="/lib/anchor/anchor.min.js"></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "false",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/js/local-search.js"></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+</body>
+</html>

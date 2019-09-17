@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/r85.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="description" content>
+  <meta name="author" content="Roland Edgeworth">
+  <meta name="keywords" content>
+  <title>Array ~ Rol.E</title>
+  <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css">
+  <link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css">
+  <link rel="stylesheet" href="https://at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+  
+    <link rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css">
+  
+  <link rel="stylesheet" href="/css/main.css">
+
+  
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Rol.E</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">Archives</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">Tags</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">About</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+</nav>
+
+    <div class="view intro-2"
+         style="background: url('/img/bg.jpg')no-repeat center center;
+           background-size: cover;
+           background-attachment: fixed;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <br>
+              <p>Tuesday, September 17th 2019, 8:01 pm</p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto">
+          <div class="markdown-body">
+            <h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>数组是一组数据的集合 , 在一个数组中 , 数组元素可以是任何类型 , 在内存中是一段连续的内存空间   </p>
+<p>每个元素在数组中占据一个位置 , 称为索引 , 索引从 0 开始 , 最大值为数组长度减 1</p>
+<h2 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h2><ul>
+<li><p>直接创建</p>
+<pre><code class="js">  var arrA = [];//空数组
+  var arrB = [1,2,3]//三个值的数组
+  var arrC = [1,&#39;string&#39;, Object, true,]//有不同类型数据的数组 , 最后一个逗号为结尾的逗号
+  //结尾的逗号可以去掉 , 在主流浏览器中可兼容（IE8 以下浏览器未测试）</code></pre>
+</li>
+<li><p>构造函数创建</p>
+<pre><code class="js">  var arrD = new Array();//空数组
+  var arrE = new Array(5);//[empty × 5]
+  var arrF = new Array(1,2,3,4,5);//[1,2,3,4,5]</code></pre>
+</li>
+</ul>
+<h2 id="遍历-迭代"><a href="#遍历-迭代" class="headerlink" title="遍历 / 迭代"></a>遍历 / 迭代</h2><pre><code class="js">var arr = new Array(1,2,3,4,5)
+for(var i in arr){
+    console.log(arr[i]);
+}</code></pre>
+<p>以上的for in循环等价于</p>
+<pre><code class="js">for(var i = 0 ; i &lt; arr.length ; i++){
+    console.log(arr[i]);
+}</code></pre>
+<h1 id="数组方法"><a href="#数组方法" class="headerlink" title="数组方法"></a>数组方法</h1><table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">concat()</td>
+<td align="left">连接两个或更多的数组 , 并返回结果</td>
+</tr>
+<tr>
+<td align="left">join()</td>
+<td align="left">把所有数组元素放入一个字符串 , 元素通过指定的分隔符进行分隔</td>
+</tr>
+<tr>
+<td align="left">reverse()</td>
+<td align="left">反转数组中元素的顺序</td>
+</tr>
+<tr>
+<td align="left">slice()</td>
+<td align="left">从某个已有的数组返回选定的元素</td>
+</tr>
+<tr>
+<td align="left">splice()</td>
+<td align="left">删除元素 , 并向数组添加新元素</td>
+</tr>
+<tr>
+<td align="left">indexOf()</td>
+<td align="left">查找元素在数组中的位置</td>
+</tr>
+<tr>
+<td align="left">lastIndexOf()</td>
+<td align="left">从后向前开始查找元素在数组中的位置</td>
+</tr>
+<tr>
+<td align="left">pop()</td>
+<td align="left">删除并返回数组的最后一个元素</td>
+</tr>
+<tr>
+<td align="left">push()</td>
+<td align="left">向数组的末尾添加一个或更多元素</td>
+</tr>
+<tr>
+<td align="left">shift()</td>
+<td align="left">删除并返回数组的第一个元素</td>
+</tr>
+<tr>
+<td align="left">unshift()</td>
+<td align="left">向数组的开头添加一个或更多元素</td>
+</tr>
+<tr>
+<td align="left">valueOf()</td>
+<td align="left">返回数组对象的原始值</td>
+</tr>
+<tr>
+<td align="left">sort()</td>
+<td align="left">对数组的元素进行排序</td>
+</tr>
+<tr>
+<td align="left">toString()</td>
+<td align="left">把数组转换为字符串 , 并返回结果</td>
+</tr>
+<tr>
+<td align="left">toLocaleString()</td>
+<td align="left">把数组转换为本地数组 , 并返回结果</td>
+</tr>
+<tr>
+<td align="left">map()</td>
+<td align="left">将数组中的每个元素调用一个提供的函数 , 原数组不变</td>
+</tr>
+<tr>
+<td align="left">forEach()</td>
+<td align="left">将数组中的每个元素执行传进提供的函数 , 原数组改变</td>
+</tr>
+<tr>
+<td align="left">filter()</td>
+<td align="left">对所有元素进行判断 , 将满足条件的元素作为一个新的数组返回</td>
+</tr>
+<tr>
+<td align="left">every()</td>
+<td align="left">将所有元素进行判断 , 所有元素都满足判断条件 , 则返回true</td>
+</tr>
+<tr>
+<td align="left">some()</td>
+<td align="left">将所有元素进行判断 , 存在元素都满足判断条件 , 则返回true</td>
+</tr>
+</tbody></table>
+<h2 id="arrayObject-concat-array1-array2-……-arrayN"><a href="#arrayObject-concat-array1-array2-……-arrayN" class="headerlink" title="arrayObject.concat(array1, array2, …… , arrayN)"></a>arrayObject.concat(array1, array2, …… , arrayN)</h2><p>将数组进行连接 , 返回连接后的新数组 , 不改变原数组</p>
+<pre><code class="js">var arrA = new Array(1, 2, 3);
+console.log(arrA.concat(4, 5));
+//[1, 2, 3, 4, 5]
+
+var arrB = new Array(1, 2);
+var arrC = new Array(3, 4);
+var arrD = new Array(5, 6);
+var arr = arrB.concat(arrC, arrD)
+console.log(arr);
+//[1, 2, 3, 4, 5, 6]</code></pre>
+<h2 id="arrayObject-join-separator"><a href="#arrayObject-join-separator" class="headerlink" title="arrayObject.join(separator)"></a>arrayObject.join(separator)</h2><p>将数组中的所有元素放入一个字符串 , 元素之间用指定的分隔符分隔<br>参数 separator (分隔符) 可选 , 如参数缺省 , 默认使用逗号作为分隔府<br>不改变原数组</p>
+<pre><code class="js">var arrE = [a, b, c];
+console.log(arrE.join());
+//a-b-c</code></pre>
+<p>注 : String.split() 与 join() 的功能相反 , 将字符串按照指定的分隔符切割为数组 , 搭配使用 , 可实现反转字符串功能</p>
+<pre><code class="js">var info = &quot;Hello!&quot;
+info.split(&#39;&#39;);//分隔符为空字符串
+console.log(info);//[&#39;H&#39;, &#39;e&#39;, &#39;l&#39;, &#39;l&#39;, &#39;o&#39;]
+info = info.reverse().join(&#39;&#39;);
+console.log(info);//olleH</code></pre>
+<h2 id="arrayObject-reverse"><a href="#arrayObject-reverse" class="headerlink" title="arrayObject.reverse()"></a>arrayObject.reverse()</h2><p>将数组中全部元素顺序反转 , 此方法改变原数组</p>
+<h2 id="arrayObject-slice-startIndex-endIndex"><a href="#arrayObject-slice-startIndex-endIndex" class="headerlink" title="arrayObject.slice(startIndex, endIndex)"></a>arrayObject.slice(startIndex, endIndex)</h2><p>将数组中指定索引之间的元素截取 , 存储至一个新数组中 , 返回新数组<br>不改变原数组  </p>
+<p>startIndex : 开始截取位置<br>endIndex : 结束截取位置   </p>
+<p>截取元素索引从startIndex所在元素开始 , 包括此元素 , 截取至endIndex所在元素为止 , 不包括第二个参数所指向的元素   </p>
+<pre><code class="js">var arr = new Array(1,2,3,4,5,6,7,8,9);
+console.log(arr.slice(2,6));
+//3,4,5,6</code></pre>
+<p>特点</p>
+<ul>
+<li>如果不传入参数 , slice() 会截取整个数组 , 相当于将数组复制了一次</li>
+<li>如果只传入一个参数 , 会从此参数所指的元素开始 , 截取至最后一个元素 ( 包括最后一个元素 )</li>
+<li>如果参数为负值 , 代表倒数第几个 , 此时参数不再等同于元素索引 , 如 -1 指倒数第一个元素</li>
+<li>如果第一个参数所在位置在第二个参数之后 , 返回空数组   </li>
+</ul>
+<h2 id="arrayObject-splice-start-deleteCount-item1-item2-item3…"><a href="#arrayObject-splice-start-deleteCount-item1-item2-item3…" class="headerlink" title="arrayObject.splice(start, deleteCount, item1, item2, item3…)"></a>arrayObject.splice(start, deleteCount, item1, item2, item3…)</h2><p>在指定位置对数组进行编辑 , 改变原数组<br>返回被删除的元素组成的新数组 , 如果未删除元素 , 返回空数组</p>
+<p>start : 开始操作的位置<br>deleteCount : 删除元素的个数 , 如果不删除 , 传入 0<br>item1, item2… : 在操作位置插入的元素   </p>
+<h2 id="arrayObject-indexOf-item-start"><a href="#arrayObject-indexOf-item-start" class="headerlink" title="arrayObject.indexOf(item, start)"></a>arrayObject.indexOf(item, start)</h2><p>查找指定元素在数组中的索引 , 找到了返回索引 , 未找到返回 -1</p>
+<p>item : 要查找的元素的元素值<br>start : 开始查找的位置 ( 索引值 )<br>arrayObject.lastIndexOf(item, start)    </p>
+<p>功能与 indexOf() 相似 , 但从数组后向前查找    </p>
+<p>注 两种方法查找方式均为按元素值查找 , 在有重复元素的数组中 , 返回值可能并不相同</p>
+<h2 id="arrayObject-push-item1-item2-item3……"><a href="#arrayObject-push-item1-item2-item3……" class="headerlink" title="arrayObject.push(item1, item2, item3……)"></a>arrayObject.push(item1, item2, item3……)</h2><p>将元素放在数组的最后面 , 返回值为新数组长度 , 改变原数组</p>
+<h2 id="arrayObject-pop"><a href="#arrayObject-pop" class="headerlink" title="arrayObject.pop()"></a>arrayObject.pop()</h2><p>将数组的最后一个元素删除 , 返回被删除元素的值 , 原数组改变</p>
+<h2 id="arrayObject-unshift-item1-item2-item3……"><a href="#arrayObject-unshift-item1-item2-item3……" class="headerlink" title="arrayObject.unshift(item1, item2, item3……)"></a>arrayObject.unshift(item1, item2, item3……)</h2><p>将元素插入到数组的开头 , 返回值为新数组长度 , 改变原数组</p>
+<h2 id="arrayObject-shift"><a href="#arrayObject-shift" class="headerlink" title="arrayObject.shift()"></a>arrayObject.shift()</h2><p>将数组开头的元素删除 , 返回被删除元素的值 , 原数组改变</p>
+<h2 id="arrayObject-valueOf"><a href="#arrayObject-valueOf" class="headerlink" title="arrayObject.valueOf()"></a>arrayObject.valueOf()</h2><p>返回数组元素本身 (Object)</p>
+<h2 id="arrayObject-sort-function"><a href="#arrayObject-sort-function" class="headerlink" title="arrayObject.sort(function)"></a>arrayObject.sort(function)</h2><p>对数组元素进行排序，改变原数组，返回对数组的引用</p>
+<p>不带参数调用 sort() 时，排序后的结果并不按照数值大小排列，而是以字母表顺序 ( ACSII码顺序 ) 进行排序 ( 如有必要将临时转化为字符串 )<br>当带参数调用 sort() 时，会按照参数 ( function类型 ) 中设定的排序方式进行排序</p>
+<p>以下是对 sort() 的基本分析</p>
+<pre><code class="js">function mySort(func){
+    if(func == undefined){//无参数情况下，比较ASCII码
+        for(var i=0;i&lt;theArray.length;i++){
+            for(var j=0;j&lt;theArray.length-i;j++){
+                var temp;
+                if(theArray[j]&gt;theArray[j+1]){
+                    temp = theArray[j];
+                    theArray[j] = theArray[j+1];
+                    theArray[j+1] = temp;
+                }
+            }
+        }
+    }
+    else if(typeof func == &#39;function&#39;){
+        for(var i=0;i&lt;theArray.length-1;i++){
+            for(var j=0;j&lt;theArray.length-i-1;j++){
+                var temp;
+                var decide = func(theArray[j], theArray[j+1]);
+                if(decide&gt;0){
+                    //按照传入参数的返回值执行排序
+                    //返回值大于 0，说明array[j]&gt;array[j+1]
+                    //此时交换元素值
+                    temp = theArray[j];
+                    theArray[j] = theArray[j+1];
+                    theArray[j+1] = temp;
+                }
+            }
+        }
+    }
+    return theArray;
+}</code></pre>
+<p>一个简单的排序函数</p>
+<pre><code class="js">arr.sort(function(a,b){
+    return a-b;
+});
+arrayObject.toString()
+返回表示函数源代码的字符串
+
+var arr = [1,6,4,2,8,&quot;asd&quot;,true,,,&quot;aszxs&quot;]
+console.log(arr.toString())
+//1,6,4,2,8,asd,true,,,aszxs</code></pre>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            
+            <p>
+              <i class="iconfont icon-tag"></i>
+              
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" rel="nofollow noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+  </div>
+</div>
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/popper/popper.min.js"></script>
+<script src="/lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="/lib/mdbootstrap/js/mdb.min.js"></script>
+<script src="/js/main.js"></script>
+
+  
+    <script src="/lib/tocbot/tocbot.min.js"></script>
+  
+  <script src="/js/post.js"></script>
+
+
+  <script src="/lib/prettify/prettify.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+  <script src="/lib/typed/typed.min.js"></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Array&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+  <script src="/lib/anchor/anchor.min.js"></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "false",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/js/local-search.js"></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+</body>
+</html>
