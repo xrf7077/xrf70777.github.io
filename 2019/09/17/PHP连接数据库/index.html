@@ -14,7 +14,7 @@
   <meta name="description" content>
   <meta name="author" content="Roland Edgeworth">
   <meta name="keywords" content>
-  <title>PHP连接数据库 ~ Rol.E</title>
+  <title>PHP 连接数据库 ~ Rol.E</title>
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
   <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css">
@@ -60,10 +60,6 @@
         
           
           
-          <li class="nav-item">
-            <a class="nav-link" href="/categories/">Categories</a>
-          </li>
-        
           
           
           <li class="nav-item">
@@ -123,7 +119,12 @@
       <div class="py-5 z-depth-3" id="board">
         <div class="post-content mx-auto">
           <div class="markdown-body">
-            
+            <pre><code class="php">    $conn = new mysqli(&quot;localhost&quot;, &quot;root&quot;, &quot;&quot;, &quot;jingdongdong&quot;);
+    if($conn-&gt;connect_errno){
+        echo &quot;数据库连接失败&quot; . $conn-&gt;connect_errno;
+    }
+    $conn-&gt;close(); //调用对象方法close()以关闭连接 </code></pre>
+
             <hr>
           </div>
           <br>
@@ -233,7 +234,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "PHP连接数据库&nbsp;",
+        "PHP 连接数据库&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
