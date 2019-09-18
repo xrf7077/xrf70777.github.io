@@ -98,7 +98,7 @@
 
             
               <br>
-              <p>Tuesday, September 17th 2019, 3:31 pm</p>
+              <p>Tuesday, September 17th 2019, 12:00 am</p>
             
           </div>
 
@@ -119,11 +119,20 @@
       <div class="py-5 z-depth-3" id="board">
         <div class="post-content mx-auto">
           <div class="markdown-body">
-            <pre><code class="php">    $conn = new mysqli(&quot;localhost&quot;, &quot;root&quot;, &quot;&quot;, &quot;jingdongdong&quot;);
-    if($conn-&gt;connect_errno){
-        echo &quot;数据库连接失败&quot; . $conn-&gt;connect_errno;
-    }
-    $conn-&gt;close(); //调用对象方法close()以关闭连接 </code></pre>
+            <h3 id="PHP-是这世界上最好的语言"><a href="#PHP-是这世界上最好的语言" class="headerlink" title="PHP 是这世界上最好的语言"></a>PHP 是这世界上最好的语言</h3><a id="more"></a>
+
+<pre><code class="php">    $server_name = &#39;localhost:3306&#39;;
+    $dbms_username = &#39;root&#39;;
+    $dbms_password = &#39;&#39;;
+    $db_name = &#39;jingdongdong&#39;;
+
+    $conn = new mysqli($server_name, $dbms_username, $dbms_password, $db_name);
+    if($conn-&gt;connect_error) {
+        echo &quot;连接失败。&quot;;
+        return;
+    }else{
+        echo &quot;连接成功&quot;;
+    }</code></pre>
 
             <hr>
           </div>
