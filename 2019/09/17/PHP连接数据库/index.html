@@ -86,7 +86,7 @@
 </nav>
 
     <div class="view intro-2"
-         style="background: url('/img/bg.jpg')no-repeat center center;
+         style="background: url('/img/arc_bg.jpg')no-repeat center center;
            background-size: cover;
            background-attachment: fixed;">
       <div class="full-bg-img">
@@ -120,29 +120,186 @@
         <div class="post-content mx-auto">
           <div class="markdown-body">
             <h3 id="PHP-是这世界上最好的语言"><a href="#PHP-是这世界上最好的语言" class="headerlink" title="PHP 是这世界上最好的语言"></a>PHP 是这世界上最好的语言</h3><a id="more"></a>
+<h1 id="注册"><a href="#注册" class="headerlink" title="注册"></a>注册</h1><h2 id="数据库信息"><a href="#数据库信息" class="headerlink" title="数据库信息"></a>数据库信息</h2><table>
+<thead>
+<tr>
+<th align="left">类别</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">数据库名</td>
+<td align="left">jingdongdong</td>
+</tr>
+<tr>
+<td align="left">账户</td>
+<td align="left">root</td>
+</tr>
+<tr>
+<td align="left">密码</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">用户表名</td>
+<td align="left">users</td>
+</tr>
+<tr>
+<td align="left">字段A</td>
+<td align="left">id int ( 6 ) / Primary Key / AUTO_INCREMENT</td>
+</tr>
+<tr>
+<td align="left">字段B</td>
+<td align="left">name varchar ( 20 )</td>
+</tr>
+<tr>
+<td align="left">字段C</td>
+<td align="left">pwd varchar ( 20 )</td>
+</tr>
+<tr>
+<td align="left">字段D</td>
+<td align="left">tel varchar ( 11 )</td>
+</tr>
+</tbody></table>
+<h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><pre><code class="html">&lt;form action=&quot;/jingdongdong/api/register.php&quot; method=&quot;POST&quot;&gt;
+    &lt;input type=&quot;text&quot; name=&quot;name&quot; class=&quot;form-control&quot; placeholder=&quot;Username&quot;&gt;
+    &lt;input type=&quot;text&quot; name=&quot;pwd&quot; class=&quot;form-control&quot; placeholder=&quot;Password&quot;&gt;
+    &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary&quot;&gt;Sign Up&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+<h2 id="PHP代码"><a href="#PHP代码" class="headerlink" title="PHP代码"></a>PHP代码</h2><h3 id="register-php"><a href="#register-php" class="headerlink" title="register.php"></a>register.php</h3><pre><code class="php">// 从请求中取得用户名和密码
+$user = $_POST[&#39;name&#39;];
+$pw = $_POST[&#39;pwd&#39;];
 
-<pre><code class="php">    $server_name = &#39;localhost:3306&#39;;
-    $dbms_username = &#39;root&#39;;
-    $dbms_password = &#39;&#39;;
-    $db_name = &#39;jingdongdong&#39;;
+// 连接数据库
+$server_name = &#39;localhost:3306&#39;;
+$dbms_username = &#39;root&#39;;
+$dbms_password = &#39;&#39;;
+$db_name = &#39;jingdongdong&#39;;
 
-    $conn = new mysqli($server_name, $dbms_username, $dbms_password, $db_name);
-    if($conn-&gt;connect_error) {
-        echo &quot;连接失败。&quot;;
-        return;
-    }else{
-        echo &quot;连接成功&quot;;
-    }</code></pre>
+$conn = new mysqli($server_name, $dbms_username, $dbms_password, $db_name);
+if($conn-&gt;connect_error) {
+    return;
+}else{
+}
+
+// 检查用户名是否存在
+$sql = &quot;
+    SELECT `id` FROM `users`
+    WHERE `users`.`name`=&#39;$user&#39;
+&quot;;
+$ret = $conn-&gt;query($sql);
+if($ret-&gt;num_rows &gt; 0) {
+    // 用户名存在
+    echo &quot;用户名已经存在&quot;;
+} else {
+    // 用户名不存在，则将该用户名和密码插入到表中
+    $sql = &quot;
+        INSERT INTO `users`
+        (`id`, `name`, `pwd`, `tel`)
+        VALUES
+        (NULL, &#39;$user&#39;, &#39;$pw&#39;, &#39;13333333333&#39;)
+    &quot;;
+    $ret = $conn-&gt;query($sql);
+    if($ret) {
+        // 注册成功
+        // 跳转至登录页
+        header(&quot;Location: http://localhost:80/jingdongdong/html/login.html&quot;);
+    } else {
+        //注册失败
+        echo &quot;注册失败&quot;;
+    }
+}</code></pre>
+<h3 id="check-php"><a href="#check-php" class="headerlink" title="check.php"></a>check.php</h3><pre><code class="php">$user = $_GET[&#39;name&#39;];
+include &quot;./conn.php&quot;;
+$sql = &quot;SELECT `id` from `users`
+        WHERE `users`.`name`=&#39;$user&#39;
+    &quot;;
+
+$ret = $conn-&gt;query($sql);
+
+if ($ret-&gt;num_rows &gt; 0) {
+    //用户名已存在
+    echo 0;
+} else {
+    //用户名可以使用
+    echo 1;
+}</code></pre>
+<h2 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a>Ajax</h2><pre><code class="js">var uname = document.querySelector(&#39;input[name=&quot;name&quot;]&#39;);
+
+uname.onblur = check;
+
+function check() {  // 检测用户名是否存在
+    let ajax = new XMLHttpRequest();
+
+    ajax.open(&quot;get&quot;, `/jingdongdong/api/check.php?name=${uname.value}`, true);
+
+    ajax.onreadystatechange = function () {
+        if (ajax.readyState !== 4) {
+            return;
+        }
+        if (ajax.status &gt;= 200 &amp;&amp; ajax.status &lt; 300) {
+            if (ajax.responseText == 0) {
+                uname.style.color = &quot;red&quot;;
+            } else if (ajax.responseText == 1) {
+                uname.style.color = &quot;#000&quot;;
+            }
+        } else {
+        }
+    }
+    ajax.send();
+}</code></pre>
+<h1 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h1><h2 id="HTML-1"><a href="#HTML-1" class="headerlink" title="HTML"></a>HTML</h2><pre><code class="html">&lt;form action=&quot;/jingdongdong/api/login.php&quot; method=&quot;POST&quot;&gt;
+    &lt;input type=&quot;text&quot; name=&quot;name&quot; class=&quot;form-control&quot; placeholder=&quot;Username&quot;&gt;
+    &lt;input type=&quot;text&quot; name=&quot;pwd&quot; class=&quot;form-control&quot; placeholder=&quot;Password&quot;&gt;
+    &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary&quot;&gt;Sign Up&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+<h2 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h2><h3 id="login-php"><a href="#login-php" class="headerlink" title="login.php"></a>login.php</h3><pre><code class="php">$user = $_POST[&#39;name&#39;];
+$pw = $_POST[&#39;pwd&#39;];
+
+// 连接数据库
+$server_name = &#39;localhost:3306&#39;;
+$dbms_username = &#39;root&#39;;
+$dbms_password = &#39;&#39;;
+$db_name = &#39;jingdongdong&#39;;
+$conn = new mysqli($server_name, $dbms_username, $dbms_password, $db_name);
+
+if($conn-&gt;connect_error) {
+    return;
+}else{
+}
+// 查询用户名与密码均符合的条目
+$sql = &quot;SELECT `id` from `users`
+    WHERE `users`.`name`=&#39;$user&#39; and `users`.`pwd`=&#39;$pw&#39;
+&quot;;
+
+$ret = $conn-&gt;query($sql);
+if($ret-&gt;num_rows &gt; 0){
+    // 查询到符合要求的条目，跳转至欢迎页
+    header(&quot;Location: http://localhost:80/jingdongdong/html/welcome.html&quot;);
+}else{
+    echo &quot;Login Failed&quot;;
+}</code></pre>
 
             <hr>
           </div>
           <br>
           <div>
             
+              <p>
+                <i class="iconfont icon-inbox"></i>
+                
+                  <a class="hover-with-bg" href="/categories/PHP">PHP</a>
+                  &nbsp;
+                
+              </p>
+            
             <p>
               <i class="iconfont icon-tag"></i>
               
-                <a class="hover-with-bg" href="/tags/php%20mysql%20%E6%95%B0%E6%8D%AE%E5%BA%93">php mysql 数据库</a>
+                <a class="hover-with-bg" href="/tags/JS">JS</a>
+              
+                <a class="hover-with-bg" href="/tags/php">php</a>
+              
+                <a class="hover-with-bg" href="/tags/SQL">SQL</a>
               
             </p>
             
