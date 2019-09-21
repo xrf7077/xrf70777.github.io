@@ -119,17 +119,17 @@
       <div class="py-5 z-depth-3" id="board">
         <div class="post-content mx-auto">
           <div class="markdown-body">
-            <h2 id="Cookie-简介"><a href="#Cookie-简介" class="headerlink" title="Cookie 简介 :"></a>Cookie 简介 :</h2><p>http 协议具有无状态的特性 , 而为了记录访问者的一些信息 ( 如登录状态等 )  , 通过 Cookie 和 Session 技术来实现记录访问者的一些基本信息</p>
+            <h2 id="Cookie-简介"><a href="#Cookie-简介" class="headerlink" title="Cookie 简介 :"></a>Cookie 简介 :</h2><p>http 协议具有无状态的特性 , 而很多站点都有记录信息 ( 如登录状态等 ) 的需求 , 我们通过 Cookie 和 Session 技术来对其进行实现</p>
 <a id="more"></a>
-<p>Cookie 是一种本地存储技术 , 是浏览器储存在用户的机器上的一个很小的文本文件。Cookie 是纯文本 , 没有可执行代码。储存一些服务器需要的信息 , 每次请求站点 , 会发送相应的cookie , 这些cookie可以用实现辨别用户身份信息等功能</p>
+<p>Cookie 是一种本地存储技术 , 其表现形式是浏览器储存在用户硬盘上的一个很小的文本文件。Cookie 中存储的数据是纯文本 , 没有可执行代码 , 其中包括一些服务器需要的信息 , 每次请求站点 , 会发送相应的cookie , 这些cookie可以用实现辨别用户身份信息 , 记录用户搜索记录等功能</p>
 <h3 id="Cookie-如何记录浏览器的登录状态-会话跟踪"><a href="#Cookie-如何记录浏览器的登录状态-会话跟踪" class="headerlink" title="Cookie 如何记录浏览器的登录状态   ( 会话跟踪 )"></a>Cookie 如何记录浏览器的登录状态   ( 会话跟踪 )</h3><ul>
 <li>浏览器向服务器发送登录请求 , 携带用户名和密码</li>
 <li>服务器进行登录信息的验证 , 如果成功 , 在给浏览器的响应中 , 设定了一个 Cookie ( 如 SID1234765432167 )  </li>
 <li>页面跳转 , 发送的请求中携带了刚才服务器设定的 Cookie ( SID1234765432167 )   </li>
-<li>服务器收到请求后 , 会从 Cookie 中取得 SID , 并验证是否为有效的 ID 值    </li>
-<li>如果 ID 值有效</li>
+<li>服务器收到请求后 , 会从 Cookie 中取得 SID , 并验证 ID 值是否有效   </li>
+<li>如果 ID 值有效 , 则返回登录状态的页面</li>
 </ul>
-<h2 id="Cookie-的保存"><a href="#Cookie-的保存" class="headerlink" title="Cookie 的保存"></a>Cookie 的保存</h2><pre><code class="js">document.cookie = &quot;username=CuiJn&quot;; //存Cookie
+<h2 id="Cookie-的存取"><a href="#Cookie-的存取" class="headerlink" title="Cookie 的存取"></a>Cookie 的存取</h2><pre><code class="js">document.cookie = &quot;username=CuiJn&quot;; //存Cookie
 document.cookie = &quot;password=123456&quot;
 
 document.cookie;    //取Cookie  格式为 &quot;name1=value1; name2=value2; name3=value3&quot;
@@ -178,9 +178,9 @@ document.cookie = &quot;neme=value; expires=&quot; + d;</code></pre>
             <p>
               <i class="iconfont icon-tag"></i>
               
-                <a class="hover-with-bg" href="/tags/Cookie">Cookie</a>
-              
                 <a class="hover-with-bg" href="/tags/JS">JS</a>
+              
+                <a class="hover-with-bg" href="/tags/Cookie">Cookie</a>
               
             </p>
             

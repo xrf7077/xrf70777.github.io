@@ -167,7 +167,8 @@
 // 从 Baidu 获取热搜关键词
 function inp(keyWord) {
     let s = document.createElement(&#39;script&#39;);
-    s.src = `https://www.baidu.com/sugrec?pre=1&amp;p=3&amp;ie=utf-8&amp;json=1&amp;prod=pc&amp;from=pc_web&amp;sugsid=1454,21100,29522,29720,29568,29221,26350&amp;wd=${keyWord}&amp;req=2&amp;csor=3&amp;pwd=wi&amp;cb=search&amp;_=1568883721394`;
+    s.src = `https://www.baidu.com/sugrec?pre=1&amp;p=3&amp;ie=utf-8&amp;json=1&amp;prod=pc&amp;from=pc_web&amp;sugsid=1454,21100,29522,29720,29568,29221,26350&amp;wd=${keyWord}&amp;req=2&amp;csor=3&amp;pwd=wi&amp;cb=search&amp;_=1568883721394`;  
+    // 这段超长的 url 取自百度
     document.body.appendChild(s);
 }
 
@@ -175,7 +176,7 @@ function inp(keyWord) {
 function search(data) {
     let ul = document.querySelector(&#39;ul&#39;);
 
-    // 对数据的处理，详见上图
+    // 对数据的处理，详见上图的响应格式
     if (data.g === undefined) return;
     let liArr = data.g.map(word =&gt; `&lt;li class=&quot;hot&quot;&gt;${word.q}&lt;/li&gt;`);
     ul.innerHTML = liArr.join(&#39;&#39;) + `&lt;li&gt;&lt;a class=&quot;feedBack&quot;&gt;反馈&lt;/a&gt;&lt;/li&gt;`;
@@ -184,20 +185,24 @@ function search(data) {
 input.oninput = function () {
     document.querySelector(&#39;ul&#39;).style.display = &quot;block&quot;;
     if (input.value == &#39;&#39;) document.querySelector(&#39;ul&#39;).innerHTML = &#39;&#39;;
-    inp(input.value);
-    console.log(1);
+    inp(input.value);   // 调用 inp() 方法 , 利用 JSONP 获取热搜关键词
 }
 input.onblur = function () {
+    // 搜索栏失去焦点时隐藏热搜关键词列表
     setTimeout(() =&gt; {
         document.querySelector(&#39;ul&#39;).style.display = &quot;none&quot;;
     }, 100);
 }
+
+// logo
+document.querySelector(&quot;.logo img&quot;).onclick = function () {
+    location.href = &quot;#&quot;;
+}
+
+// 以下为搜索功能
 document.querySelector(&quot;input[type=&#39;submit&#39;]&quot;).onclick = function () {
     let word = input.value;
     location.href = &quot;https://www.baidu.com/s?wd=&quot; + word;
-}
-document.querySelector(&quot;.logo img&quot;).onclick = function () {
-    location.href = &quot;#&quot;;
 }
 document.querySelector(&quot;ul&quot;).onclick = function (evt) {
     console.log(evt.target.className);
