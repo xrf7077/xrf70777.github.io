@@ -14,7 +14,7 @@
   <meta name="description" content>
   <meta name="author" content="Roland Edgeworth">
   <meta name="keywords" content>
-  <title>Archive ~ Rol.E</title>
+  <title>JSONP跨域请求 ~ Rol.E</title>
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
   <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css">
@@ -30,7 +30,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -86,7 +86,7 @@
 </nav>
 
     <div class="view intro-2"
-         style="background: url('/img/bg.jpg')no-repeat center center;
+         style="background: url('/img/arc_bg.jpg')no-repeat center center;
            background-size: cover;
            background-attachment: fixed;">
       <div class="full-bg-img">
@@ -96,6 +96,9 @@
               
             </span>
 
+            
+              <br>
+              <p>Thursday, September 19th 2019, 3:47 pm</p>
             
           </div>
 
@@ -107,41 +110,92 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5 z-depth-3" id="board">
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">8 posts in total.</p>
-  <hr>
-  
-    
       
-      <p class="h5">2019</p>
-    
-    <a href="/2019/07/21/Array/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Array</span>
-      <span style="float: right;">07-21</span>
-    </a>
-  
-    
-    <a href="/2019/07/11/类型转换/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">类型转换</span>
-      <span style="float: right;">07-11</span>
-    </a>
-  
-</div>
 
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto">
+          <div class="markdown-body">
+            <h1 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h1><p>同源 , 指协议 ( 如HTTP ) , 域名 ( 如localhost ) 和端口 ( 如 8080 ) 三者全部相同 , 其中有任何一个不同 , 都会被认作为不同的域    </p>
+<a id="more"></a>
+<p>同源策略是浏览器的安全机制之一 , 不同源的脚本在默认情况下 , 不能读写对方资源     </p>
+<p>如果非同源 , 那么在请求数据时 , 浏览器会在控制台中报一个异常 , 访问被 CORS 策略阻挡</p>
+<h1 id="跨域请求"><a href="#跨域请求" class="headerlink" title="跨域请求"></a>跨域请求</h1><p>一个从 A 到 B 的请求 , 只要协议 , 域名与端口有任何一个不同 , 就会被认作跨域请求  </p>
+<p>在无明确授权的情况下 , 跨域请求会被浏览器的同源策略所阻拦</p>
+<p>目前比较流行的跨域请求解决方案有三个   </p>
+<ul>
+<li>JSONP</li>
+<li>CORS</li>
+<li>反向代理</li>
+</ul>
+<p>其中 , CORS 与反向代理由后端实现 , JSONP 方案需要前后端配合实现   </p>
+<h1 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h1><p>JSONP 实现跨域请求 , 借助了 <code>&lt;script&gt;&lt;/script&gt;</code> 可以发送跨域请求的特性   </p>
+<p>然而 JSONP 只能发送 GET 请求 , 无法发送 POST 请求   </p>
+<h2 id="步骤一"><a href="#步骤一" class="headerlink" title="步骤一"></a>步骤一</h2><p>创建 <code>&lt;script&gt;&lt;/script&gt;</code> 节点    </p>
+<pre><code class="js">let s = document.createElement(&#39;script&#39;);</code></pre>
+<h2 id="步骤二"><a href="#步骤二" class="headerlink" title="步骤二"></a>步骤二</h2><p>将该节点的 src 属性指向请求资源的路径   </p>
+<pre><code class="js">s.src = &quot;url&quot;;</code></pre>
+<h2 id="步骤三"><a href="#步骤三" class="headerlink" title="步骤三"></a>步骤三</h2><p>将节点挂上 DOM 树</p>
+<pre><code class="js">document.body.appendChild(s);</code></pre>
+<p><code>&lt;script&gt;</code> 节点的位置随意     </p>
+<p>在节点上书后 , 会立刻向指定路径发送请求 , 此时我们可以等待响应</p>
+<h1 id="例"><a href="#例" class="headerlink" title="例"></a>例</h1><pre><code class="js">let s = document.createElement(&#39;script&#39;);
 
-              </div>
-            </div>
+s.src = &quot;localhost:80/php/JSONPTest.php?funcName=getData&quot;;
+
+function getData(data){
+    return data;
+}
+
+document.body.appendChild(s);</code></pre>
+<pre><code class="php">$fn = $_GET[&#39;funcName&#39;];
+$data = &quot;Roland&quot;;
+echo &quot;$fn($data)&quot;;</code></pre>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            
+            <p>
+              <i class="iconfont icon-tag"></i>
+              
+                <a class="hover-with-bg" href="/tags/JS">JS</a>
+              
+                <a class="hover-with-bg" href="/tags/JSONP">JSONP</a>
+              
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" rel="nofollow noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
           </div>
         </div>
       </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+  </div>
+</div>
+
     
   </main>
 
@@ -192,6 +246,11 @@
 <script src="/lib/mdbootstrap/js/mdb.min.js"></script>
 <script src="/js/main.js"></script>
 
+  
+    <script src="/lib/tocbot/tocbot.min.js"></script>
+  
+  <script src="/js/post.js"></script>
+
 
   <script src="/lib/prettify/prettify.min.js"></script>
   <script>
@@ -207,7 +266,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Archive&nbsp;",
+        "JSONP跨域请求&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

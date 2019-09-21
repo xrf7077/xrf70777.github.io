@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/r85.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="description" content>
+  <meta name="author" content="Roland Edgeworth">
+  <meta name="keywords" content>
+  <title>Baidu ~ Rol.E</title>
+  <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css">
+  <link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css">
+  <link rel="stylesheet" href="https://at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+  
+    <link rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css">
+  
+  <link rel="stylesheet" href="/css/main.css">
+
+  
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Rol.E</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">Archives</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">Tags</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">About</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+</nav>
+
+    <div class="view intro-2"
+         style="background: url('/img/arc_bg.jpg')no-repeat center center;
+           background-size: cover;
+           background-attachment: fixed;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <br>
+              <p>Thursday, September 19th 2019, 8:21 pm</p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto">
+          <div class="markdown-body">
+            <h2 id="介绍一下"><a href="#介绍一下" class="headerlink" title="介绍一下 :"></a>介绍一下 :</h2><p>这是一个关于 Ajax 与 JSONP 的练习，动态获取热搜关键词    </p>
+<a id="more"></a>   
+
+
+<img src="https://s2.ax1x.com/2019/09/19/nLvZHe.png"> 
+
+<p><font size="4"><center>大概就是这么一个样子 ↑</center></font></p>
+<p>目录结构如下   </p>
+<img src="https://s2.ax1x.com/2019/09/19/nLxWdg.png">
+
+<h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
+    &lt;title&gt;Fake Baidu&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;css/index.css&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;div class=&quot;box&quot;&gt;
+        &lt;div class=&quot;logo&quot;&gt;
+            &lt;img src=&quot;https://www.baidu.com/img/bd_logo1.png?where=super&quot; width=&quot;270&quot; height=&quot;129&quot;&gt;
+        &lt;/div&gt;
+        &lt;form action=&quot;&quot; id=&quot;search&quot;&gt;
+            &lt;span class=&quot;soutu&quot;&gt;&lt;/span&gt;
+            &lt;input type=&quot;text&quot;&gt;
+            &lt;input type=&quot;submit&quot; value=&quot;百度一下&quot;&gt;
+            &lt;ul&gt;
+            &lt;/ul&gt;
+        &lt;/form&gt;
+    &lt;/div&gt;
+    &lt;script src=&quot;js/index.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+<h2 id="js"><a href="#js" class="headerlink" title="js"></a>js</h2><center>这是百度的响应格式 ↓</center>    
+<img src="https://s2.ax1x.com/2019/09/19/nOSq54.png">    
+
+
+
+<pre><code class="js">let input = document.querySelector(&#39;input&#39;);    //这里获取的是搜索栏的输入框
+
+// 从 Baidu 获取热搜关键词
+function inp(keyWord) {
+    let s = document.createElement(&#39;script&#39;);
+    s.src = `https://www.baidu.com/sugrec?pre=1&amp;p=3&amp;ie=utf-8&amp;json=1&amp;prod=pc&amp;from=pc_web&amp;sugsid=1454,21100,29522,29720,29568,29221,26350&amp;wd=${keyWord}&amp;req=2&amp;csor=3&amp;pwd=wi&amp;cb=search&amp;_=1568883721394`;
+    document.body.appendChild(s);
+}
+
+// 处理获取到的数据
+function search(data) {
+    let ul = document.querySelector(&#39;ul&#39;);
+
+    // 对数据的处理，详见上图
+    if (data.g === undefined) return;
+    let liArr = data.g.map(word =&gt; `&lt;li class=&quot;hot&quot;&gt;${word.q}&lt;/li&gt;`);
+    ul.innerHTML = liArr.join(&#39;&#39;) + `&lt;li&gt;&lt;a class=&quot;feedBack&quot;&gt;反馈&lt;/a&gt;&lt;/li&gt;`;
+}
+
+input.oninput = function () {
+    document.querySelector(&#39;ul&#39;).style.display = &quot;block&quot;;
+    if (input.value == &#39;&#39;) document.querySelector(&#39;ul&#39;).innerHTML = &#39;&#39;;
+    inp(input.value);
+    console.log(1);
+}
+input.onblur = function () {
+    setTimeout(() =&gt; {
+        document.querySelector(&#39;ul&#39;).style.display = &quot;none&quot;;
+    }, 100);
+}
+document.querySelector(&quot;input[type=&#39;submit&#39;]&quot;).onclick = function () {
+    let word = input.value;
+    location.href = &quot;https://www.baidu.com/s?wd=&quot; + word;
+}
+document.querySelector(&quot;.logo img&quot;).onclick = function () {
+    location.href = &quot;#&quot;;
+}
+document.querySelector(&quot;ul&quot;).onclick = function (evt) {
+    console.log(evt.target.className);
+
+    if (evt.target.className === &#39;hot&#39;) {
+        let word = evt.target.innerHTML;
+        location.href = &quot;https://www.baidu.com/s?wd=&quot; + word;
+    }
+}</code></pre>
+<h2 id="css"><a href="#css" class="headerlink" title="css"></a>css</h2><p>css 可以略过，为了好看而已   </p>
+<pre><code class="css">* {
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style: none;
+    position: absolute;
+    z-index: 1;
+    position: absolute;
+    box-sizing: border-box;
+    border: 1px solid #CCC;
+    box-shadow: 1px 1px 3px #ededed;
+    -webkit-box-shadow: 1px 1px 3px #ededed;
+    -moz-box-shadow: 1px 1px 3px #ededed;
+    -o-box-shadow: 1px 1px 3px #ededed;
+}
+
+ul li {
+    height: 22px;
+    line-height: 22px;
+    width: 534px;
+    box-sizing: border-box;
+    font: 14px arial;
+    line-height: 22px;
+    padding: 0 8px;
+    position: relative;
+    cursor: default;
+}
+
+ul li:not(:last-child):hover {
+    background-color: #ddd;
+}
+
+ul li:last-child {
+    height: 27px;
+    text-align: right;
+    background: #fafafa;
+    color: #666;
+}
+
+.feedBack {
+    margin-right: 10px;
+    text-decoration: underline;
+    color: #666;
+    text-align: right;
+    line-height: 27px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+input[type=&#39;text&#39;] {
+    width: 479px;
+    height: 20px;
+    display: block;
+    padding: 9px 48px 9px 7px;
+    border: 1px solid rgb(204, 204, 204);
+    border-right: 0;
+    float: left;
+    outline: none;
+    font-size: 16px;
+}
+input[type=&#39;text&#39;]:hover {
+    border-color: #b8b8b8;
+}
+
+input[type=&#39;text&#39;]:focus {
+    border-color: rgb(51, 136, 255);
+}
+
+/* 38f */
+input[type=&#39;submit&#39;] {
+    width: 104px;
+    height: 40px;
+    background-color: rgb(51, 136, 255);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 38px;
+    text-align: center;
+    display: inline-block;
+    border: 0;
+    box-sizing: border-box;
+    color: white;
+    user-select: none;
+    white-space: pre;
+    align-items: flex-start;
+    text-align: center;
+    -webkit-appearance: push-button;
+}
+
+.box {
+    height: 293px;
+    display: block;
+    width: 641px;
+    position: absolute;
+    left: 50%;
+    margin-left: -328px;
+}
+
+#search {
+    position: absolute;
+    bottom: 0;
+}
+
+.soutu {
+    display: block;
+    position: absolute;
+    background: #ccc;
+    height: 16px;
+    width: 18px;
+    background: #fff url(https://ss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/static/protocol/https/soutu/img/camera_new_5606e8f.png) no-repeat;
+    bottom: 12px;
+    left: 506px;
+    cursor: pointer;
+}
+
+.soutu:hover {
+    background-position-y: -20px;
+}
+
+.logo {
+    height: 181px;
+    width: 100%;
+    position: absolute;
+    bottom: 40px;
+}
+
+.logo img {
+    margin: 33px 0 0 -136px;
+    position: relative;
+    left: 50%;
+    width: 270px;
+    height: 129px;
+    cursor: pointer;
+}</code></pre>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            
+            <p>
+              <i class="iconfont icon-tag"></i>
+              
+                <a class="hover-with-bg" href="/tags/JS">JS</a>
+              
+                <a class="hover-with-bg" href="/tags/Ajax">Ajax</a>
+              
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" rel="nofollow noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+  </div>
+</div>
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/popper/popper.min.js"></script>
+<script src="/lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="/lib/mdbootstrap/js/mdb.min.js"></script>
+<script src="/js/main.js"></script>
+
+  
+    <script src="/lib/tocbot/tocbot.min.js"></script>
+  
+  <script src="/js/post.js"></script>
+
+
+  <script src="/lib/prettify/prettify.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+  <script src="/lib/typed/typed.min.js"></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Baidu&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+  <script src="/lib/anchor/anchor.min.js"></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "false",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/js/local-search.js"></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+</body>
+</html>
