@@ -124,6 +124,288 @@
     
     
     <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/10/22/Express基础/">
+        <p class="h4 index-header">Express基础</p>
+        <div class="index-excerpt">
+          
+            <div class="index-text mb-1">ExpressExpress 是一个保持最小规模的灵活的 Node.js Web 应用程序开发框架，为 Web 和移动应用程序提供一组强大的功能
+安装npm i -g express 
+npm i -g express-generator
+安装后，使用以下命令以新建一个 Hello World 工程   
+express SubectName
+
+
+使用</div>
+          
+        </div>
+      </a>
+
+        <div>
+          
+            <i class="iconfont icon-riqi2"></i>&nbsp;2019-10-22&nbsp;&nbsp;
+          
+          
+          
+        </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/09/29/杂项/">
+        <p class="h4 index-header">杂项</p>
+        <div class="index-excerpt">
+          
+            <div class="index-text mb-1">async await  以同步的方式调用异步函数function sum (n1, n2) {
+    return n1 + n2;
+}
+var r = sum(1, 2);  //同步调用
+function ajax (func) {
+    let xhr = new XMLHttpRequest();
+    xhr.open();
+    xhr.onload = function() {
+        if(this.status&gt;=200 &amp;&amp; this.status&lt;300) {
+            func(this.responseText)
+        }
+    }
+    xhr.send();
+}
+
+var a = ajax();
+// 异步函数按照同步方式调用 , 此时得不到数据
+
+// 想得到函数的执行结果 , 需要回调 ↓ 
+ajax(function(data) {
+    console.log(data);
+})
+如果能够以同步的方式调用异步函数 , 并保证其中每一部分都在得到数据之后再向下执行 , 对代码</div>
+          
+        </div>
+      </a>
+
+        <div>
+          
+            <i class="iconfont icon-riqi2"></i>&nbsp;2019-09-29&nbsp;&nbsp;
+          
+          
+          
+        </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/09/27/设计模式/">
+        <p class="h4 index-header">设计模式</p>
+        <div class="index-excerpt">
+          
+            <div class="index-text mb-1">单例模式 ( singleton )某个类，只有一个实例的设计模式
+function Singleton() {
+    console.error(&quot;单例模式下请使用XXX创建实例&quot;)
+}
+Singleton.getInstance = function() {
+    if (Singleton._instance) {
+        return Singleton._instance;
+    }
+    var instance = Singleton._instance = {};
+    instance.method = function() {
+        // code goes here
+    }
+    return this._instance;
+}
+</div>
+          
+        </div>
+      </a>
+
+        <div>
+          
+            <i class="iconfont icon-riqi2"></i>&nbsp;2019-09-27&nbsp;&nbsp;
+          
+          
+          
+        </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/09/27/jQuery插件/">
+        <p class="h4 index-header">jQuery插件</p>
+        <div class="index-excerpt">
+          
+            <div class="index-text mb-1">jQuery插件的定义(function($) {
+    $.fn.extend({
+        randomColor: function() {
+            function getRandomColor() {
+                var color = Math.floor(Math.random() * 0xFFFFFF);
+                color = color.toString(16);
+                return &quot;#&quot; + (&#39;000000&#39; + color).slice(-6);
+            }
+            for (var i = 0; i &lt; this.length; i++) {
+                $(this).css({
+                    background: getRandomColor()
+                })
+            }
+            re</div>
+          
+        </div>
+      </a>
+
+        <div>
+          
+            <i class="iconfont icon-riqi2"></i>&nbsp;2019-09-27&nbsp;&nbsp;
+          
+          
+          
+        </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/09/26/Ajax/">
+        <p class="h4 index-header">Ajax</p>
+        <div class="index-excerpt">
+          
+            <div class="index-text mb-1">XMLHttpRequest ()XMLHttpRequest 对象是浏览器提供的一个API，用来向服务器发送请求并解析服务器响应
+
+
+
+方法
+描述
+
+
+
+.open()
+准备启动一个AJAX请求
+
+
+.send()
+发送AJAX请求
+
+
+.setRequestHeader()
+设置请求头部信息
+
+
+.getResponseHeader()
+获得响应头部信息
+
+
+.getAllResponseHeaders()
+获得一个包含所有头部信息的长字符串
+
+
+.abort()
+取消异步请求
+
+
+
+
+
+属性
+描述
+
+
+
+.responseText
+包含响应主体返回文本
+
+
+.status
+响应的HTTP状态
+
+
+.statusText
+HTTP状态的说明
+
+
+.readyState
+表示“请求”/“响应”过程的当前活动阶段
+
+
+XMLHttpRequest 方法XHR.open( method, url[, async] )method : 请求方式，如 GET，POST 等url :    请求地址async :  是否异步执行，可选，默认为 true
+XHR.send( [body] )用于</div>
+          
+        </div>
+      </a>
+
+        <div>
+          
+            <i class="iconfont icon-riqi2"></i>&nbsp;2019-09-26&nbsp;&nbsp;
+          
+          
+          
+        </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/09/23/Inherit/">
+        <p class="h4 index-header">Inherit</p>
+        <div class="index-excerpt">
+          
+            <div class="index-text mb-1">类的继承// 定义类
+function Person(name, age){
+    this.name = name;
+    this.age = age;
+}
+person.prototype.run = function () {
+    console.log(`Hello, I&#39;m ${name}.`);
+}
+
+// 继承类
+function Student(name, age, id) {
+    Person.call(this, name, age);
+    this.id = id;
+}
+
+Student.prototype = Object.create(Person.prototype);
+Student.prototype = function(){
+    console.log(`${this.name}是好学生，他上课不睡觉`);
+}
+ES6  
+// 定义类
+class Person {
+    constructor(name, age){
+        this.name = name;
+        this.age = age;
+</div>
+          
+        </div>
+      </a>
+
+        <div>
+          
+            <i class="iconfont icon-riqi2"></i>&nbsp;2019-09-23&nbsp;&nbsp;
+          
+          
+          
+            <i class="iconfont icon-tag"></i>
+            
+              <a href="/tags/JS">JS</a>&nbsp;
+            
+          
+        </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
       <a href="/2019/09/20/Cookie/">
         <p class="h4 index-header">Cookie</p>
         <div class="index-excerpt">
@@ -141,9 +423,9 @@
           
             <i class="iconfont icon-tag"></i>
             
-              <a href="/tags/JS">JS</a>&nbsp;
-            
               <a href="/tags/Cookie">Cookie</a>&nbsp;
+            
+              <a href="/tags/JS">JS</a>&nbsp;
             
           
         </div>
@@ -247,147 +529,18 @@
     </div>
   </div>
 
-  <div class="row mb-4 mx-auto">
-    
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/08/06/DOM/">
-        <p class="h4 index-header">DOM</p>
-        <div class="index-excerpt">
-          
-            <div class="index-text mb-1">HTML DOM 简介 :什么是HTML DOM?DOM是W3C的标准 , 它定义了访问 HTML 和 XML 文档的标准 , HTML DOM 则是专门适用于 HTML / XHTML 的文档对象模型   ...</div>
-          
-        </div>
-      </a>
-
-        <div>
-          
-            <i class="iconfont icon-riqi2"></i>&nbsp;2019-08-06&nbsp;&nbsp;
-          
-          
-            <i class="iconfont icon-inbox"></i>
-            
-              <a href="/categories/JS">JS</a>&nbsp;
-            &nbsp;
-          
-          
-            <i class="iconfont icon-tag"></i>
-            
-              <a href="/tags/JS">JS</a>&nbsp;
-            
-              <a href="/tags/DOM">DOM</a>&nbsp;
-            
-          
-        </div>
-    </div>
-  </div>
-
-  <div class="row mb-4 mx-auto">
-    
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/07/21/Array/">
-        <p class="h4 index-header">Array</p>
-        <div class="index-excerpt">
-          
-            <div class="index-text mb-1">数组定义数组是一组数据的集合 , 在一个数组中 , 数组元素可以是任何类型 , 在内存中是一段连续的内存空间   ...</div>
-          
-        </div>
-      </a>
-
-        <div>
-          
-            <i class="iconfont icon-riqi2"></i>&nbsp;2019-07-21&nbsp;&nbsp;
-          
-          
-            <i class="iconfont icon-inbox"></i>
-            
-              <a href="/categories/JS">JS</a>&nbsp;
-            &nbsp;
-          
-          
-            <i class="iconfont icon-tag"></i>
-            
-              <a href="/tags/JS">JS</a>&nbsp;
-            
-          
-        </div>
-    </div>
-  </div>
-
-  <div class="row mb-4 mx-auto">
-    
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/07/11/类型转换/">
-        <p class="h4 index-header">类型转换</p>
-        <div class="index-excerpt">
-          
-            <div class="index-text mb-1">隐式转换不同类型的变量比较要先转类型, 通常发生在运算符加减乘除, 等于, 还有大于, 小于等   ...</div>
-          
-        </div>
-      </a>
-
-        <div>
-          
-            <i class="iconfont icon-riqi2"></i>&nbsp;2019-07-11&nbsp;&nbsp;
-          
-          
-            <i class="iconfont icon-inbox"></i>
-            
-              <a href="/categories/JS">JS</a>&nbsp;
-            &nbsp;
-          
-          
-            <i class="iconfont icon-tag"></i>
-            
-              <a href="/tags/JS">JS</a>&nbsp;
-            
-          
-        </div>
-    </div>
-  </div>
-
-  <div class="row mb-4 mx-auto">
-    
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/06/24/移动端布局/">
-        <p class="h4 index-header">移动端布局</p>
-        <div class="index-excerpt">
-          
-            <div class="index-text mb-1">一 弹性布局 ( 百分比布局, 流式布局 ) ——拉勾网、天猫首页优点 : 充分发挥大手机的优势——显示内容更多   
-缺点 : 屏幕过大会造成元素间距过大, 比例失调
-特点 : ...</div>
-          
-        </div>
-      </a>
-
-        <div>
-          
-            <i class="iconfont icon-riqi2"></i>&nbsp;2019-06-24&nbsp;&nbsp;
-          
-          
-            <i class="iconfont icon-inbox"></i>
-            
-              <a href="/categories/CSS">CSS</a>&nbsp;
-            &nbsp;
-          
-          
-            <i class="iconfont icon-tag"></i>
-            
-              <a href="/tags/CSS">CSS</a>&nbsp;
-            
-              <a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF">移动端</a>&nbsp;
-            
-              <a href="/tags/REM">REM</a>&nbsp;
-            
-          
-        </div>
-    </div>
-  </div>
 
 
+  <nav aria-label="index posts navigation">
+    <ul class="pagination pg-blue justify-content-center mt-5">
+      
+      
+        <li class="page-item">
+          <a class="page-link" href="/page/2/#board">Next</a>
+        </li>
+      
+    </ul>
+  </nav>
 
 
               </div>

@@ -14,7 +14,7 @@
   <meta name="description" content>
   <meta name="author" content="Roland Edgeworth">
   <meta name="keywords" content>
-  <title>Cookie ~ Rol.E</title>
+  <title>Ajax ~ Rol.E</title>
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
   <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css">
@@ -98,7 +98,7 @@
 
             
               <br>
-              <p>Friday, September 20th 2019, 8:47 am</p>
+              <p>Thursday, September 26th 2019, 5:11 pm</p>
             
           </div>
 
@@ -119,56 +119,99 @@
       <div class="py-5 z-depth-3" id="board">
         <div class="post-content mx-auto">
           <div class="markdown-body">
-            <h2 id="Cookie-简介"><a href="#Cookie-简介" class="headerlink" title="Cookie 简介 :"></a>Cookie 简介 :</h2><p>http 协议具有无状态的特性 , 而很多站点都有记录信息 ( 如登录状态等 ) 的需求 , 我们通过 Cookie 和 Session 技术来对其进行实现</p>
-<a id="more"></a>
-<p>Cookie 是一种本地存储技术 , 其表现形式是浏览器储存在用户硬盘上的一个很小的文本文件。Cookie 中存储的数据是纯文本 , 没有可执行代码 , 其中包括一些服务器需要的信息 , 每次请求站点 , 会发送相应的cookie , 这些cookie可以用实现辨别用户身份信息 , 记录用户搜索记录等功能</p>
-<h3 id="Cookie-如何记录浏览器的登录状态-会话跟踪"><a href="#Cookie-如何记录浏览器的登录状态-会话跟踪" class="headerlink" title="Cookie 如何记录浏览器的登录状态   ( 会话跟踪 )"></a>Cookie 如何记录浏览器的登录状态   ( 会话跟踪 )</h3><ul>
-<li>浏览器向服务器发送登录请求 , 携带用户名和密码</li>
-<li>服务器进行登录信息的验证 , 如果成功 , 在给浏览器的响应中 , 设定了一个 Cookie ( 如 SID1234765432167 )  </li>
-<li>页面跳转 , 发送的请求中携带了刚才服务器设定的 Cookie ( SID1234765432167 )   </li>
-<li>服务器收到请求后 , 会从 Cookie 中取得 SID , 并验证 ID 值是否有效   </li>
-<li>如果 ID 值有效 , 则返回登录状态的页面</li>
-</ul>
-<h2 id="Cookie-的存取"><a href="#Cookie-的存取" class="headerlink" title="Cookie 的存取"></a>Cookie 的存取</h2><pre><code class="js">document.cookie = &quot;username=CuiJn&quot;; //存Cookie
-document.cookie = &quot;password=123456&quot;
-
-document.cookie;    //取Cookie  格式为 &quot;name1=value1; name2=value2; name3=value3&quot;
-//  这种方法会一次性去除全部 Cookie , 类型为字符串
-
-
-// 取指定 Cookie ↓    需要将 Cookie 字符串进行两次切分实现
-function getCookie(){
-    var cookie = document.cookie;
-    var arr = cookie.split(&quot;; &quot;);
-    var key_value;
-    for(let i = 0; i &lt; arr.length; i++){
-        key_value = arr[i].split(&quot;=&quot;);
-        if (key_value === &quot;password&quot;) {
-            return key_value;
+            <h1 id="XMLHttpRequest"><a href="#XMLHttpRequest" class="headerlink" title="XMLHttpRequest ()"></a>XMLHttpRequest ()</h1><p>XMLHttpRequest 对象是浏览器提供的一个API，用来向服务器发送请求并解析服务器响应</p>
+<table>
+<thead>
+<tr>
+<th align="left">方法</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">.open()</td>
+<td align="left">准备启动一个AJAX请求</td>
+</tr>
+<tr>
+<td align="left">.send()</td>
+<td align="left">发送AJAX请求</td>
+</tr>
+<tr>
+<td align="left">.setRequestHeader()</td>
+<td align="left">设置请求头部信息</td>
+</tr>
+<tr>
+<td align="left">.getResponseHeader()</td>
+<td align="left">获得响应头部信息</td>
+</tr>
+<tr>
+<td align="left">.getAllResponseHeaders()</td>
+<td align="left">获得一个包含所有头部信息的长字符串</td>
+</tr>
+<tr>
+<td align="left">.abort()</td>
+<td align="left">取消异步请求</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">.responseText</td>
+<td align="left">包含响应主体返回文本</td>
+</tr>
+<tr>
+<td align="left">.status</td>
+<td align="left">响应的HTTP状态</td>
+</tr>
+<tr>
+<td align="left">.statusText</td>
+<td align="left">HTTP状态的说明</td>
+</tr>
+<tr>
+<td align="left">.readyState</td>
+<td align="left">表示“请求”/“响应”过程的当前活动阶段</td>
+</tr>
+</tbody></table>
+<h1 id="XMLHttpRequest-方法"><a href="#XMLHttpRequest-方法" class="headerlink" title="XMLHttpRequest 方法"></a>XMLHttpRequest 方法</h1><h2 id="XHR-open-method-url-async"><a href="#XHR-open-method-url-async" class="headerlink" title="XHR.open( method, url[, async] )"></a>XHR.open( method, url[, async] )</h2><p>method : 请求方式，如 GET，POST 等<br>url :    请求地址<br>async :  是否异步执行，可选，默认为 true</p>
+<h2 id="XHR-send-body"><a href="#XHR-send-body" class="headerlink" title="XHR.send( [body] )"></a>XHR.send( [body] )</h2><p>用于发送 http 请求，如果请求方法为 GET 或 HEAD，参数应设为 NULL</p>
+<h2 id="XHR-setRequestHeader-header-value"><a href="#XHR-setRequestHeader-header-value" class="headerlink" title="XHR.setRequestHeader(header, value)"></a>XHR.setRequestHeader(header, value)</h2><p>此方法的调用必须在 open() 后，send() 前<br>header : 属性名<br>value :  属性值<br>对同一请求头重复赋值，会生成一个合并多个值后的请求头    </p>
+<h2 id="XHR-getResponseHeader-name"><a href="#XHR-getResponseHeader-name" class="headerlink" title="XHR.getResponseHeader(name)"></a>XHR.getResponseHeader(name)</h2><p>name : 属性名<br>返回相对应的属性值</p>
+<h2 id="XHR-getAllResponseHeaders"><a href="#XHR-getAllResponseHeaders" class="headerlink" title="XHR.getAllResponseHeaders()"></a>XHR.getAllResponseHeaders()</h2><p>返回所有响应头  </p>
+<h2 id="XHR-abort"><a href="#XHR-abort" class="headerlink" title="XHR.abort()"></a>XHR.abort()</h2><p>如果请求已发出，此方法将终止该请求，当一个请求被终止，它的 readyState 属性将被置为 0  </p>
+<h1 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h1><h2 id="responseText"><a href="#responseText" class="headerlink" title="responseText"></a>responseText</h2><p>一个由 XMLHttpRequest 返回的字符串，当请求状态 readyState 值为 4 ( DONE ) 且 status 值为 200 时，responseText 时后端返回的全部数据   </p>
+<h2 id="status"><a href="#status" class="headerlink" title="status"></a>status</h2><p>返回 XMLHttpRequest 响应中的数字状态码，在请求完成前，其值为 0    </p>
+<p>值为 1XX : 代表临时的响应信息<br>值为 2XX : 服务器成功接收了客户端请求<br>值为 3XX : 重定向<br>值为 4XX : 客户端错误，如请求了不存在的页面<br>值为 5XX : 服务器错误，不能完成请求          </p>
+<h2 id="readyState"><a href="#readyState" class="headerlink" title="readyState"></a>readyState</h2><p>返回一个 XMLHttpRequest  代理当前所处的状态        </p>
+<p>值为 0 : 代理被创建，但尚未调用 open() 方法<br>值为 1 : open() 方法已经被调用<br>值为 2 : send() 方法已经被调用，并且头部和状态已经可获得<br>值为 3 : 下载中，responseText 属性已经包含部分数据<br>值为 4 : 下载已完成   </p>
+<h1 id="一个-Ajax-请求"><a href="#一个-Ajax-请求" class="headerlink" title="一个 Ajax 请求"></a>一个 Ajax 请求</h1><h2 id="GET"><a href="#GET" class="headerlink" title="GET"></a>GET</h2><pre><code class="js">let xhr = new XMLHttpRequest()
+xhr.onreadystatechange = () =&gt; {
+    if (xhr.readystate == 4) {
+        if (xhr.status &gt;= 200 &amp;&amp; xhr.status &lt; 300) {
+            alert(xhr.responseText)
+        } else {
+            alert(&quot;Error : &quot; + xhr.status)
         }
     }
-    return null;
-}</code></pre>
-<h2 id="Cookie-选项"><a href="#Cookie-选项" class="headerlink" title="Cookie 选项"></a>Cookie 选项</h2><h3 id="Cookie-路径"><a href="#Cookie-路径" class="headerlink" title="Cookie 路径"></a>Cookie 路径</h3><pre><code class="js">// path: 路径   当 Cookie 设定了路径 , 仅在这一文件夹下的 html 文件 , 可以访问此 Cookie  ( 包括其父级文件夹 ) 
-// 在存 Cookie 时 , 如果没有设定 path  , 则默认设为当前 html 所在文件夹 
-
-// 手动设定 path 方式 ↓
-
-document.cookie = &quot;name=value;path=url&quot;</code></pre>
-<h3 id="Cookie-有效期"><a href="#Cookie-有效期" class="headerlink" title="Cookie 有效期"></a>Cookie 有效期</h3><pre><code class="js">// 如果系统时间超过了有效时间 , Cookie 会被浏览器删除
-// 在没有设定有效时间的情况下 , 默认值为 session ( 浏览器关闭后结束 , 删除该 Cookie ) 
-document.cookie = &quot;name=value; expires=Date对象转成的字符串&quot;</code></pre>
-<p><font size="3">利用 Cookie 的有效期 , 可以实现 Cookie 的删除</font></p>
-<pre><code class="js">let d = new Date();
-d.setDate(d.getDate() - 1);
-document.cookie = &quot;neme=value; expires=&quot; + d;</code></pre>
-<h2 id="Cookie-的不可取代之处"><a href="#Cookie-的不可取代之处" class="headerlink" title="Cookie 的不可取代之处"></a>Cookie 的不可取代之处</h2><p>Cookie 之所以不可取代 , 是因为它与服务器有联系    </p>
-<ul>
-<li><p>浏览器在发送请求时 , 会自动将当前页面能够访问的 Cookie 发送给服务器<br>  通过请求头 cookie: aaa=bbb; ccc=ddd</p>
-</li>
-<li><p>服务器同样有能力设定浏览器的 Cookie<br>  通过响应头 set-cookie: aaa=bbb;ccc=ddd</p>
-</li>
-</ul>
+}
+xhr.open(&quot;get&quot;, &quot;api.php&quot;, true)
+xhr.send(null)</code></pre>
+<h2 id="POST"><a href="#POST" class="headerlink" title="POST"></a>POST</h2><pre><code class="js">let xhr = new XMLHttpRequest();
+xhr.open(&#39;post&#39;, &#39;02.post.php&#39;);
+xhr.setRequestHeader(&quot;Content-type&quot;, &quot;application/x-www-form-urlencoded&quot;);
+xhr.onreadystatechange = function () {
+    if (xhr.status == 200) {
+        if (xhr.status &gt;= 200 &amp;&amp; xhr.status &lt; 300) {
+            alert(xhr.responseText);
+        } else {
+            alert(&quot;Error : &quot; + xhr.status)
+        }
+    }
+};
+xhr.send(&#39;name=role&amp;age=18&#39;);</code></pre>
 
             <hr>
           </div>
@@ -177,10 +220,6 @@ document.cookie = &quot;neme=value; expires=&quot; + d;</code></pre>
             
             <p>
               <i class="iconfont icon-tag"></i>
-              
-                <a class="hover-with-bg" href="/tags/Cookie">Cookie</a>
-              
-                <a class="hover-with-bg" href="/tags/JS">JS</a>
               
             </p>
             
@@ -281,7 +320,7 @@ document.cookie = &quot;neme=value; expires=&quot; + d;</code></pre>
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Cookie&nbsp;",
+        "Ajax&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

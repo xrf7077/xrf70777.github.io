@@ -14,7 +14,7 @@
   <meta name="description" content>
   <meta name="author" content="Roland Edgeworth">
   <meta name="keywords" content>
-  <title>Cookie ~ Rol.E</title>
+  <title>Inherit ~ Rol.E</title>
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
   <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css">
@@ -98,7 +98,7 @@
 
             
               <br>
-              <p>Friday, September 20th 2019, 8:47 am</p>
+              <p>Monday, September 23rd 2019, 1:23 pm</p>
             
           </div>
 
@@ -119,56 +119,49 @@
       <div class="py-5 z-depth-3" id="board">
         <div class="post-content mx-auto">
           <div class="markdown-body">
-            <h2 id="Cookie-简介"><a href="#Cookie-简介" class="headerlink" title="Cookie 简介 :"></a>Cookie 简介 :</h2><p>http 协议具有无状态的特性 , 而很多站点都有记录信息 ( 如登录状态等 ) 的需求 , 我们通过 Cookie 和 Session 技术来对其进行实现</p>
-<a id="more"></a>
-<p>Cookie 是一种本地存储技术 , 其表现形式是浏览器储存在用户硬盘上的一个很小的文本文件。Cookie 中存储的数据是纯文本 , 没有可执行代码 , 其中包括一些服务器需要的信息 , 每次请求站点 , 会发送相应的cookie , 这些cookie可以用实现辨别用户身份信息 , 记录用户搜索记录等功能</p>
-<h3 id="Cookie-如何记录浏览器的登录状态-会话跟踪"><a href="#Cookie-如何记录浏览器的登录状态-会话跟踪" class="headerlink" title="Cookie 如何记录浏览器的登录状态   ( 会话跟踪 )"></a>Cookie 如何记录浏览器的登录状态   ( 会话跟踪 )</h3><ul>
-<li>浏览器向服务器发送登录请求 , 携带用户名和密码</li>
-<li>服务器进行登录信息的验证 , 如果成功 , 在给浏览器的响应中 , 设定了一个 Cookie ( 如 SID1234765432167 )  </li>
-<li>页面跳转 , 发送的请求中携带了刚才服务器设定的 Cookie ( SID1234765432167 )   </li>
-<li>服务器收到请求后 , 会从 Cookie 中取得 SID , 并验证 ID 值是否有效   </li>
-<li>如果 ID 值有效 , 则返回登录状态的页面</li>
-</ul>
-<h2 id="Cookie-的存取"><a href="#Cookie-的存取" class="headerlink" title="Cookie 的存取"></a>Cookie 的存取</h2><pre><code class="js">document.cookie = &quot;username=CuiJn&quot;; //存Cookie
-document.cookie = &quot;password=123456&quot;
+            <h1 id="类的继承"><a href="#类的继承" class="headerlink" title="类的继承"></a>类的继承</h1><pre><code class="js">// 定义类
+function Person(name, age){
+    this.name = name;
+    this.age = age;
+}
+person.prototype.run = function () {
+    console.log(`Hello, I&#39;m ${name}.`);
+}
 
-document.cookie;    //取Cookie  格式为 &quot;name1=value1; name2=value2; name3=value3&quot;
-//  这种方法会一次性去除全部 Cookie , 类型为字符串
+// 继承类
+function Student(name, age, id) {
+    Person.call(this, name, age);
+    this.id = id;
+}
 
-
-// 取指定 Cookie ↓    需要将 Cookie 字符串进行两次切分实现
-function getCookie(){
-    var cookie = document.cookie;
-    var arr = cookie.split(&quot;; &quot;);
-    var key_value;
-    for(let i = 0; i &lt; arr.length; i++){
-        key_value = arr[i].split(&quot;=&quot;);
-        if (key_value === &quot;password&quot;) {
-            return key_value;
+Student.prototype = Object.create(Person.prototype);
+Student.prototype = function(){
+    console.log(`${this.name}是好学生，他上课不睡觉`);
+}</code></pre>
+<p>ES6  </p>
+<pre><code class="js">// 定义类
+class Person {
+    constructor(name, age){
+        this.name = name;
+        this.age = age;
+        hello() {
+            console.log(`Hello, I&#39;m ${name}.`);
         }
     }
-    return null;
+}
+
+// 继承类
+class Student extends Person{
+    constructor(name, age, id) {
+        super(name, age); // 父类的的构造函数，必须第一句调用
+        this.id = id;
+    }
+    sleepInClass() {
+        console.log(`${this.name}是好学生，他上课不睡觉`)
+    }
 }</code></pre>
-<h2 id="Cookie-选项"><a href="#Cookie-选项" class="headerlink" title="Cookie 选项"></a>Cookie 选项</h2><h3 id="Cookie-路径"><a href="#Cookie-路径" class="headerlink" title="Cookie 路径"></a>Cookie 路径</h3><pre><code class="js">// path: 路径   当 Cookie 设定了路径 , 仅在这一文件夹下的 html 文件 , 可以访问此 Cookie  ( 包括其父级文件夹 ) 
-// 在存 Cookie 时 , 如果没有设定 path  , 则默认设为当前 html 所在文件夹 
-
-// 手动设定 path 方式 ↓
-
-document.cookie = &quot;name=value;path=url&quot;</code></pre>
-<h3 id="Cookie-有效期"><a href="#Cookie-有效期" class="headerlink" title="Cookie 有效期"></a>Cookie 有效期</h3><pre><code class="js">// 如果系统时间超过了有效时间 , Cookie 会被浏览器删除
-// 在没有设定有效时间的情况下 , 默认值为 session ( 浏览器关闭后结束 , 删除该 Cookie ) 
-document.cookie = &quot;name=value; expires=Date对象转成的字符串&quot;</code></pre>
-<p><font size="3">利用 Cookie 的有效期 , 可以实现 Cookie 的删除</font></p>
-<pre><code class="js">let d = new Date();
-d.setDate(d.getDate() - 1);
-document.cookie = &quot;neme=value; expires=&quot; + d;</code></pre>
-<h2 id="Cookie-的不可取代之处"><a href="#Cookie-的不可取代之处" class="headerlink" title="Cookie 的不可取代之处"></a>Cookie 的不可取代之处</h2><p>Cookie 之所以不可取代 , 是因为它与服务器有联系    </p>
-<ul>
-<li><p>浏览器在发送请求时 , 会自动将当前页面能够访问的 Cookie 发送给服务器<br>  通过请求头 cookie: aaa=bbb; ccc=ddd</p>
-</li>
-<li><p>服务器同样有能力设定浏览器的 Cookie<br>  通过响应头 set-cookie: aaa=bbb;ccc=ddd</p>
-</li>
-</ul>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><pre><code class="js">let s = new Student(&quot;Rol&quot;, 18, 123);
+</code></pre>
 
             <hr>
           </div>
@@ -177,8 +170,6 @@ document.cookie = &quot;neme=value; expires=&quot; + d;</code></pre>
             
             <p>
               <i class="iconfont icon-tag"></i>
-              
-                <a class="hover-with-bg" href="/tags/Cookie">Cookie</a>
               
                 <a class="hover-with-bg" href="/tags/JS">JS</a>
               
@@ -281,7 +272,7 @@ document.cookie = &quot;neme=value; expires=&quot; + d;</code></pre>
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Cookie&nbsp;",
+        "Inherit&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

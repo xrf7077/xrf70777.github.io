@@ -14,7 +14,7 @@
   <meta name="description" content>
   <meta name="author" content="Roland Edgeworth">
   <meta name="keywords" content>
-  <title>Cookie ~ Rol.E</title>
+  <title>杂项 ~ Rol.E</title>
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
   <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css">
@@ -98,7 +98,7 @@
 
             
               <br>
-              <p>Friday, September 20th 2019, 8:47 am</p>
+              <p>Sunday, September 29th 2019, 8:31 am</p>
             
           </div>
 
@@ -119,56 +119,106 @@
       <div class="py-5 z-depth-3" id="board">
         <div class="post-content mx-auto">
           <div class="markdown-body">
-            <h2 id="Cookie-简介"><a href="#Cookie-简介" class="headerlink" title="Cookie 简介 :"></a>Cookie 简介 :</h2><p>http 协议具有无状态的特性 , 而很多站点都有记录信息 ( 如登录状态等 ) 的需求 , 我们通过 Cookie 和 Session 技术来对其进行实现</p>
-<a id="more"></a>
-<p>Cookie 是一种本地存储技术 , 其表现形式是浏览器储存在用户硬盘上的一个很小的文本文件。Cookie 中存储的数据是纯文本 , 没有可执行代码 , 其中包括一些服务器需要的信息 , 每次请求站点 , 会发送相应的cookie , 这些cookie可以用实现辨别用户身份信息 , 记录用户搜索记录等功能</p>
-<h3 id="Cookie-如何记录浏览器的登录状态-会话跟踪"><a href="#Cookie-如何记录浏览器的登录状态-会话跟踪" class="headerlink" title="Cookie 如何记录浏览器的登录状态   ( 会话跟踪 )"></a>Cookie 如何记录浏览器的登录状态   ( 会话跟踪 )</h3><ul>
-<li>浏览器向服务器发送登录请求 , 携带用户名和密码</li>
-<li>服务器进行登录信息的验证 , 如果成功 , 在给浏览器的响应中 , 设定了一个 Cookie ( 如 SID1234765432167 )  </li>
-<li>页面跳转 , 发送的请求中携带了刚才服务器设定的 Cookie ( SID1234765432167 )   </li>
-<li>服务器收到请求后 , 会从 Cookie 中取得 SID , 并验证 ID 值是否有效   </li>
-<li>如果 ID 值有效 , 则返回登录状态的页面</li>
-</ul>
-<h2 id="Cookie-的存取"><a href="#Cookie-的存取" class="headerlink" title="Cookie 的存取"></a>Cookie 的存取</h2><pre><code class="js">document.cookie = &quot;username=CuiJn&quot;; //存Cookie
-document.cookie = &quot;password=123456&quot;
-
-document.cookie;    //取Cookie  格式为 &quot;name1=value1; name2=value2; name3=value3&quot;
-//  这种方法会一次性去除全部 Cookie , 类型为字符串
-
-
-// 取指定 Cookie ↓    需要将 Cookie 字符串进行两次切分实现
-function getCookie(){
-    var cookie = document.cookie;
-    var arr = cookie.split(&quot;; &quot;);
-    var key_value;
-    for(let i = 0; i &lt; arr.length; i++){
-        key_value = arr[i].split(&quot;=&quot;);
-        if (key_value === &quot;password&quot;) {
-            return key_value;
+            <h1 id="async-await-以同步的方式调用异步函数"><a href="#async-await-以同步的方式调用异步函数" class="headerlink" title="async await  以同步的方式调用异步函数"></a><font color="#9c9">async</font> <font color="#9c9">await</font>  以同步的方式调用异步函数</h1><pre><code class="js">function sum (n1, n2) {
+    return n1 + n2;
+}
+var r = sum(1, 2);  //同步调用</code></pre>
+<pre><code class="js">function ajax (func) {
+    let xhr = new XMLHttpRequest();
+    xhr.open();
+    xhr.onload = function() {
+        if(this.status&gt;=200 &amp;&amp; this.status&lt;300) {
+            func(this.responseText)
         }
     }
-    return null;
+    xhr.send();
+}
+
+var a = ajax();
+// 异步函数按照同步方式调用 , 此时得不到数据
+
+// 想得到函数的执行结果 , 需要回调 ↓ 
+ajax(function(data) {
+    console.log(data);
+})</code></pre>
+<p>如果能够以同步的方式调用异步函数 , 并保证其中每一部分都在得到数据之后再向下执行 , 对代码书写的便捷性与可维护性都会有很大提升 , 这就是 <font color="#9c9">await</font> 和 <font color="#9c9">async</font> 提出的目的     </p>
+<h2 id="await-amp-async"><a href="#await-amp-async" class="headerlink" title="await &amp; async"></a><font color="#9c9">await</font> &amp; <font color="#9c9">async</font></h2><p><font color="#9c9">await</font> 和 <font color="#9c9">async</font> 是为了以同步的方式调用异步函数     </p>
+<pre><code class="js">function ajax () {
+    let p = new Promise(function() {
+        setTimeOut(function(resolve , reject) {
+            // 以 setTimeOut 模拟 ajax
+            // 当 setTimeOut 事件到时 , 假定 ajax 返回了数据
+            console.log(&quot;ajax 已经返回&quot;)
+            resolve();
+        },1000)
+        return p;
+    })
+}
+
+async function getData() {   // 定义一个异步函数
+    await ajax()// 这样就能保证 ajax() 数据返回之后 , 再向下执行程序 
+                // 本质上是在等待异步函数中的 promise 对象 resolve 
+
+    // await 关键字必须在异步函数中使用
 }</code></pre>
-<h2 id="Cookie-选项"><a href="#Cookie-选项" class="headerlink" title="Cookie 选项"></a>Cookie 选项</h2><h3 id="Cookie-路径"><a href="#Cookie-路径" class="headerlink" title="Cookie 路径"></a>Cookie 路径</h3><pre><code class="js">// path: 路径   当 Cookie 设定了路径 , 仅在这一文件夹下的 html 文件 , 可以访问此 Cookie  ( 包括其父级文件夹 ) 
-// 在存 Cookie 时 , 如果没有设定 path  , 则默认设为当前 html 所在文件夹 
+<p><font color="#9c9">async</font> 和 <font color="#9c9">await</font> 是一块语法糖 , 在 ES7 中提出  </p>
+<h1 id="生成器函数-generator-function"><a href="#生成器函数-generator-function" class="headerlink" title="生成器函数 generator function"></a>生成器函数 generator function</h1><h2 id="定义生成器函数"><a href="#定义生成器函数" class="headerlink" title="定义生成器函数"></a>定义生成器函数</h2><pre><code class="js">    function * func(n1) {
+        console.log(n1);
+        let n2 = yield &quot;a&quot;;
+        console.log(n2);
+        let n3 = yield &quot;b&quot;;
+        console.log(n3);
+        return &quot;c&quot;
+    }</code></pre>
+<h2 id="调用生成器函数"><a href="#调用生成器函数" class="headerlink" title="调用生成器函数"></a>调用生成器函数</h2><p>调用函数并没有执行代码 , 而是返回一个可迭代对象   </p>
+<pre><code class="js">let i = func(10);
+// 调用迭代对象的 next() 方法
+i.next() </code></pre>
+<p>第一次调用 next() 方法 , 代码会从函数的开头开始运行 , 直至遇到 yield 停止    </p>
+<p>再次调用 next() 方法 , 会从上一次退出的位置继续执行   </p>
+<p>从第二次调用 next() 方法 , next 就可以传入参数 , 并将参数赋值给上一次 yield 前的变量 , 在这里是 n2   </p>
+<p>yield 会将紧随其后的表达式结果返回 , 返回值为一个对象 , 形如      </p>
+<pre><code class="js">{done:boolean, value:&quot;a&quot;}      </code></pre>
+<p>其中 done 的取值为 false  , 除非遇到 return , 会变为 true </p>
+<p>value 为任意值 , 例如 , yield “a” 时 value 值为 “a”</p>
+<h1 id="primose"><a href="#primose" class="headerlink" title="primose"></a>primose</h1><pre><code class="js">let p = new Promise(function(resolve, reject) {
+    srtTimeOut(function() {
+        resolve(&quot;Hello&quot;);
+    },1000)
+})
 
-// 手动设定 path 方式 ↓
+p.then(function() {
+    // resolve 时的回调
+}, function() {
+    // reject 时的回调
+})
 
-document.cookie = &quot;name=value;path=url&quot;</code></pre>
-<h3 id="Cookie-有效期"><a href="#Cookie-有效期" class="headerlink" title="Cookie 有效期"></a>Cookie 有效期</h3><pre><code class="js">// 如果系统时间超过了有效时间 , Cookie 会被浏览器删除
-// 在没有设定有效时间的情况下 , 默认值为 session ( 浏览器关闭后结束 , 删除该 Cookie ) 
-document.cookie = &quot;name=value; expires=Date对象转成的字符串&quot;</code></pre>
-<p><font size="3">利用 Cookie 的有效期 , 可以实现 Cookie 的删除</font></p>
-<pre><code class="js">let d = new Date();
-d.setDate(d.getDate() - 1);
-document.cookie = &quot;neme=value; expires=&quot; + d;</code></pre>
-<h2 id="Cookie-的不可取代之处"><a href="#Cookie-的不可取代之处" class="headerlink" title="Cookie 的不可取代之处"></a>Cookie 的不可取代之处</h2><p>Cookie 之所以不可取代 , 是因为它与服务器有联系    </p>
-<ul>
-<li><p>浏览器在发送请求时 , 会自动将当前页面能够访问的 Cookie 发送给服务器<br>  通过请求头 cookie: aaa=bbb; ccc=ddd</p>
-</li>
-<li><p>服务器同样有能力设定浏览器的 Cookie<br>  通过响应头 set-cookie: aaa=bbb;ccc=ddd</p>
-</li>
-</ul>
+p.then(function() {  //与上面的意义相同
+    // resolve 时的回调
+}}).catch(function() {
+    // reject 时的回调
+}) </code></pre>
+<h1 id="Promise-Generator-function"><a href="#Promise-Generator-function" class="headerlink" title="Promise + Generator function"></a>Promise + Generator function</h1><pre><code class="js">function ajax() {
+    return new Promise(function(resolve, reject) {
+        setTimeOut(function() {
+        },1000)
+    })
+}
+
+function* getData() {
+    let d = yield ajax();
+    console.log(&quot;第一次返回&quot;);
+
+}
+
+let i = getdata();
+let r = i.next();
+r.value.then(function(data) {
+    r = i.next(data);
+    r.value.then(function(data) {
+        i.next(data);
+    })
+})</code></pre>
 
             <hr>
           </div>
@@ -177,10 +227,6 @@ document.cookie = &quot;neme=value; expires=&quot; + d;</code></pre>
             
             <p>
               <i class="iconfont icon-tag"></i>
-              
-                <a class="hover-with-bg" href="/tags/Cookie">Cookie</a>
-              
-                <a class="hover-with-bg" href="/tags/JS">JS</a>
               
             </p>
             
@@ -281,7 +327,7 @@ document.cookie = &quot;neme=value; expires=&quot; + d;</code></pre>
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Cookie&nbsp;",
+        "杂项&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
